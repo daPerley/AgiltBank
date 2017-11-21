@@ -15,9 +15,19 @@ namespace AgiltBank.Library.Data
             Accounts = accounts.ToList();
         }
 
-        public void AddCustomer(Customer customer)
+        public bool AddCustomer(Customer customer)
         {
-            Customers.Add(customer);
+            try
+            {
+                Customers.Add(customer);
+            }
+            catch (System.Exception)
+            {
+
+                return false;
+            }
+
+            return true;
         }
 
         public Customer GetCustomer(int id)
@@ -36,14 +46,23 @@ namespace AgiltBank.Library.Data
             return Customers.Where(c => c.Name.ToLower().Contains(query.ToLower()) || c.PostalCode.Contains(query)).ToList();
         }
 
-        public void OpenAccount(int customerId)
+        public bool OpenAccount(int customerId)
         {
-            Accounts.Add(new Account
+            try
             {
-                Id = ++Accounts.Last().Id,
-                CustomerId = customerId,
-                Balance = 0
-            });
+                Accounts.Add(new Account
+                {
+                    Id = ++Accounts.Last().Id,
+                    CustomerId = customerId,
+                    Balance = 0
+                });
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public bool RemoveAccount(int accountId)
