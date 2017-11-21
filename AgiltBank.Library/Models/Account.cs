@@ -26,5 +26,22 @@ namespace AgiltBank.Library.Models
 
             return true;
         }
+
+        public bool Withdrawal(decimal amount)
+        {
+            try
+            {
+                if (amount > 0 && Balance >= amount)
+                    Balance -= amount;
+                else
+                    return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
