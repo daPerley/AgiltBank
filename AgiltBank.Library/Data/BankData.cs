@@ -69,6 +69,9 @@ namespace AgiltBank.Library.Data
         {
             var account = Accounts.FirstOrDefault(c => c.Id == accountId);
 
+            if (account == null)
+                return false;
+
             var isSuccess = account.Deposit(amount);
 
             if (!isSuccess)
@@ -80,6 +83,9 @@ namespace AgiltBank.Library.Data
         public bool WithdrawalFromAccount(int accountId, decimal amount)
         {
             var account = Accounts.FirstOrDefault(c => c.Id == accountId);
+
+            if (account == null)
+                return false;
 
             var isSuccess = account.Withdrawal(amount);
 
@@ -95,6 +101,9 @@ namespace AgiltBank.Library.Data
             {
                 var fromAccount = Accounts.FirstOrDefault(c => c.Id == fromAccountId);
                 var toAccount = Accounts.FirstOrDefault(c => c.Id == toAccountId);
+
+                if (fromAccount == null && toAccount == null)
+                    return false;
 
                 var fromIsSuccess = fromAccount.Withdrawal(amount);
                 var toIsSuccess = toAccount.Deposit(amount);
