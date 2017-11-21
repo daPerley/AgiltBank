@@ -76,5 +76,17 @@ namespace AgiltBank.Library.Data
 
             return true;
         }
+
+        public bool WithdrawalFromAccount(int accountId, decimal amount)
+        {
+            var account = Accounts.FirstOrDefault(c => c.Id == accountId);
+
+            var isSuccess = account.Withdrawal(amount);
+
+            if (!isSuccess)
+                return false;
+
+            return true;
+        }
     }
 }
