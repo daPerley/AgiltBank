@@ -65,7 +65,7 @@ namespace AgiltBank.Library.Data
             return accountsToRemove.All(a => Accounts.Remove(a));
         }
 
-        public bool DepositFromAccount(int accountId, decimal amount)
+        public bool DepositToAccount(int accountId, decimal amount)
         {
             var account = Accounts.FirstOrDefault(c => c.Id == accountId);
 
