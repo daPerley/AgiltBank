@@ -31,6 +31,11 @@ namespace AgiltBank.Library.Data
             return RemoveRelatedAccounts(id) && Customers.Remove(customer);
         }
 
+        public IList<Customer> SearchCustomers(string query)
+        {
+            return Customers.Where(c => c.Name.ToLower().Contains(query.ToLower()) || c.PostalCode.Contains(query)).ToList();
+        }
+
         public bool RemoveAccount(int accountId)
         {
             var account = Accounts.FirstOrDefault(a => a.Id == accountId);
