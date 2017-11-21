@@ -7,7 +7,7 @@ namespace AgiltBank.Library.Data
 {
     public class BankFileService
     {
-        public BankData ReadBankDataFromFile(string path)
+        public Bank ReadBankDataFromFile(string path)
         {
             var lines = File.ReadAllLines(path);
             var customers = new List<Customer>();
@@ -21,7 +21,12 @@ namespace AgiltBank.Library.Data
             for (var i = numberOfCustomers + 2; i < lines.Length; i++)
                 accounts.Add(ParseToAccount(lines[i].Split(";")));
 
-            return new BankData(customers, accounts);
+            return new Bank(customers, accounts);
+        }
+
+        public bool SaveData(Bank bank)
+        {
+            return true;
         }
 
         private static Account ParseToAccount(IReadOnlyList<string> fields)
