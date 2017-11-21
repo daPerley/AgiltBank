@@ -1,4 +1,6 @@
-﻿namespace AgiltBank.Library.Models
+﻿using System.Collections.Generic;
+
+namespace AgiltBank.Library.Models
 {
     public class Customer
     {
