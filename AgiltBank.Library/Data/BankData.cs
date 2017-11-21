@@ -25,6 +25,13 @@ namespace AgiltBank.Library.Data
             return Customers.FirstOrDefault(c => c.Id == id);
         }
 
+        public bool RemoveAccount(int accountId)
+        {
+            var account = Accounts.FirstOrDefault(a => a.Id == accountId);
+            if (account != null && account.Balance != 0)
+                return false;
 
+            return Accounts.Remove(account);
+        }
     }
 }
