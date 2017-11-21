@@ -15,9 +15,16 @@ namespace AgiltBank.Library.Data
             Accounts = accounts.ToList();
         }
 
+        public void AddCustomer(Customer customer)
+        {
+            Customers.Add(customer);
+        }
+
         public Customer GetCustomer(int id)
         {
             return Customers.FirstOrDefault(c => c.Id == id);
         }
+
+
     }
 }
