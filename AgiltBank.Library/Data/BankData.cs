@@ -33,5 +33,15 @@ namespace AgiltBank.Library.Data
 
             return Accounts.Remove(account);
         }
+
+        private bool RemoveRelatedAccounts(int customerId)
+        {
+            var accountsToRemove = Accounts.Where(a => a.CustomerId == customerId).ToList();
+
+            if (accountsToRemove.Any(a => a.Balance != 0))
+                return false;
+
+            return accountsToRemove.All(a => Accounts.Remove(a));
+        }
     }
 }
