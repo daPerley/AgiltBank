@@ -88,5 +88,26 @@ namespace AgiltBank.Library.Data
 
             return true;
         }
+
+        public bool TransferBetweenAccounts(int fromAccountId, int toAccountId, decimal amount)
+        {
+            if (fromAccountId != toAccountId)
+            {
+                var fromAccount = Accounts.FirstOrDefault(c => c.Id == fromAccountId);
+                var toAccount = Accounts.FirstOrDefault(c => c.Id == toAccountId);
+
+                var fromIsSuccess = fromAccount.Withdrawal(amount);
+                var toIsSuccess = toAccount.Deposit(amount);
+
+                if (!fromIsSuccess && !toIsSuccess)
+                    return false;
+            }
+            else
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
