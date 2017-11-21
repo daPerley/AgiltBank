@@ -1,4 +1,5 @@
 ﻿using AgiltBank.Library.Models;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -7,7 +8,7 @@ namespace AgiltBank.Library.Data
 {
     public class BankFileService
     {
-        public Bank ReadBankDataFromFile(string path)
+        public Bank ReadBankDataFromFile(string path, string name)
         {
             var lines = File.ReadAllLines(path);
             var customers = new List<Customer>();
@@ -21,11 +22,47 @@ namespace AgiltBank.Library.Data
             for (var i = numberOfCustomers + 2; i < lines.Length; i++)
                 accounts.Add(ParseToAccount(lines[i].Split(";")));
 
-            return new Bank(customers, accounts);
+            return new Bank(customers, accounts, name);
         }
 
         public bool SaveData(Bank bank)
         {
+            try
+            {
+                var lines = new List<string>();
+
+                var numbersOfCustomers = bank.Customers.Count;
+                lines.Add(numbersOfCustomers.ToString());
+
+                foreach (var customer in bank.Customers)
+                {
+                    lines.Add($"{customer.Id};{customer.OrganisationNumber};{customer.Name};{customer.StreetAddress};{customer.City};{customer.State ?? string.Empty};{customer.PostalCode};{customer.Country};{customer.PhoneNumber}");
+                }
+
+                var numbersOfAccounts = bank.Accounts.Count;
+                lines.Add(numbersOfAccounts.ToString());
+
+                foreach (var account in bank.Accounts)
+                {
+                    lines.Add($"{account.Id};{account.CustomerId};{account.Balance}");
+                }
+
+                var folder = Path.Combine(Environment.CurrentDirectory, "data");
+
+                if (!Directory.Exists(folder))
+                    Directory.CreateDirectory(folder);
+
+                var path = Path.Combine(folder, $"{bank.Name}.txt");
+
+                if (!File.Exists(path))
+                    File.Create(path);
+                else
+                    File.WriteAllLines(path, lines);
+            }
+            catch (System.Exception e)
+            {
+                return false;
+            }
             return true;
         }
 
