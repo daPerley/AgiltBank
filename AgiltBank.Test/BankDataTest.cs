@@ -11,7 +11,7 @@ namespace AgiltBank.Test
     {
         private Bank _bank;
         private BankFileService _bankFileService;
-        private string path;
+        private string path = @"C:\Users\perly\OneDrive\Dokument\Visual Studio 2017\Projects\AgiltBank\AgiltBank.Test\testdata\bankdata-small.txt";
 
         [TestInitialize]
         public void Initialize()
@@ -58,7 +58,8 @@ namespace AgiltBank.Test
         [TestMethod]
         public void CanSaveBankToFile() => Assert.IsTrue(_bankFileService.SaveData(_bank));
 
- 
+        [TestMethod]
+        public void CanReadFile() => Assert.AreEqual(typeof(Bank), _bankFileService.ReadBankDataFromFile(path, "TestBank").GetType());
         #endregion
 
         #region Customer
