@@ -54,6 +54,14 @@ namespace AgiltBank
                 else if (readkey == 2)
                 {
                     Console.WriteLine("Sök:");
+                    var customers = bank.SearchCustomers(Console.ReadLine()).ToList();
+
+                    if (customers.Any())
+                        customers.ForEach(c => Console.WriteLine($"{c.Id} - {c.Name}"));
+                    else
+                        Console.WriteLine("Inga kunder matchade sökningen");
+
+                    PromptToGoBackToMenu();
                 }
                 else if (readkey == 3)
                 {
