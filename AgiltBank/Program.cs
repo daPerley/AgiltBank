@@ -16,7 +16,7 @@ namespace AgiltBank
             var filePath = Path.Combine(Environment.CurrentDirectory, $"data/{bankname}.txt");
             var standardfilePath = Path.Combine(Environment.CurrentDirectory, "data/bankdata-small.txt");
 
-            var bank = bankFileService.ReadBankDataFromFile(File.Exists(filePath)? filePath : standardfilePath, bankname);
+            var bank = bankFileService.ReadBankDataFromFile(File.Exists(filePath) ? filePath : standardfilePath, bankname);
 
             while (true)
             {
@@ -42,7 +42,7 @@ namespace AgiltBank
                         var parsedReadLine = GetParsedReadLine();
                         if (parsedReadLine != null)
                         {
-                            var customer = bank.GetCustomer((int) parsedReadLine);
+                            var customer = bank.GetCustomer((int)parsedReadLine);
                             if (customer != null)
                                 ShowCustomerDetails(customer, bank.Accounts.Where(a => a.CustomerId == customer.Id));
                             else
@@ -85,7 +85,7 @@ namespace AgiltBank
 
                         if (parsedReadLine != null)
                         {
-                            if (bank.RemoveCustomer((int) parsedReadLine))
+                            if (bank.RemoveCustomer((int)parsedReadLine))
                             {
                                 Console.WriteLine();
                                 Console.WriteLine("Kunden har tagits bort");
@@ -112,7 +112,7 @@ namespace AgiltBank
 
                         if (parsedReadLine != null)
                         {
-                            if (bank.OpenAccount((int) parsedReadLine))
+                            if (bank.OpenAccount((int)parsedReadLine))
                             {
                                 Console.WriteLine();
                                 Console.WriteLine("Ett konto har skapats");
@@ -131,7 +131,7 @@ namespace AgiltBank
                 }
                 else if (readkey == 6)
                 {
-                    Console.WriteLine("Tabort konto");
+                    Console.WriteLine("Ta bort konto");
                     while (true)
                     {
                         Console.WriteLine("kontonummer:");
@@ -139,7 +139,7 @@ namespace AgiltBank
 
                         if (parsedReadLine != null)
                         {
-                            if (bank.RemoveAccount((int) parsedReadLine))
+                            if (bank.RemoveAccount((int)parsedReadLine))
                             {
                                 Console.WriteLine();
                                 Console.WriteLine("kontot har tagits bort");
@@ -169,7 +169,7 @@ namespace AgiltBank
 
                         if (accountNumber != null && amount != null)
                         {
-                            if (bank.DepositToAccount((int) accountNumber, (decimal) amount))
+                            if (bank.DepositToAccount((int)accountNumber, (decimal)amount))
                             {
                                 Console.WriteLine();
                                 Console.WriteLine($"{amount}SEK har satts in på konto: {accountNumber}");
@@ -199,7 +199,7 @@ namespace AgiltBank
 
                         if (accountNumber != null && amount != null)
                         {
-                            if (bank.WithdrawalFromAccount((int) accountNumber, (decimal) amount))
+                            if (bank.WithdrawalFromAccount((int)accountNumber, (decimal)amount))
                             {
                                 Console.WriteLine();
                                 Console.WriteLine($"{amount}SEK har tagits ut frånt konto: {accountNumber}");
@@ -234,8 +234,8 @@ namespace AgiltBank
 
                         if (senderAccountNumber != null && amount != null && recepientAccountNumber != null)
                         {
-                            if (bank.TransferBetweenAccounts((int) senderAccountNumber, (int) recepientAccountNumber,
-                                (decimal) amount))
+                            if (bank.TransferBetweenAccounts((int)senderAccountNumber, (int)recepientAccountNumber,
+                                (decimal)amount))
                             {
                                 Console.WriteLine();
                                 Console.WriteLine(

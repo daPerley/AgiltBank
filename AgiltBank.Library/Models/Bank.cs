@@ -20,6 +20,8 @@ namespace AgiltBank.Library.Models
         {
             try
             {
+                customer.Id = Customers.Max(a => a.Id) + 1;
+
                 Customers.Add(customer);
             }
             catch (System.Exception)
@@ -53,7 +55,7 @@ namespace AgiltBank.Library.Models
             {
                 Accounts.Add(new Account
                 {
-                    Id = ++Accounts.Last().Id,
+                    Id = Accounts.Max(a => a.Id) + 1,
                     CustomerId = customerId,
                     Balance = 0
                 });
