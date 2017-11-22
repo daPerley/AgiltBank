@@ -34,6 +34,9 @@ namespace AgiltBank.Test
         #region Deposit
         [TestMethod]
         public void CanDepositMoneyToAccount() => Assert.IsTrue(_account.Deposit(100));
+
+        [TestMethod]
+        public void DepositNegativeMoney_ShouldReturnFalse() => Assert.IsFalse(_account.Deposit(-100));
         #endregion
     }
 }
