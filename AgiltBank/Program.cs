@@ -32,6 +32,24 @@ namespace AgiltBank
                 if (readkey == 1)
                 {
                     Console.WriteLine("Kundnummer:");
+                    while (true)
+                    {
+                        Console.WriteLine("Kund id:");
+                        var parsedReadLine = GetParsedReadLine();
+                        if (parsedReadLine != null)
+                        {
+                            var customer = bank.GetCustomer((int)parsedReadLine);
+                            if (customer != null)
+                                ShowCustomerDetails(customer);
+                            else
+                                Console.WriteLine("Kunden kunde inte hittas");
+
+                            PromptToGoBackToMenu();
+                            break;
+                        }
+
+                        Console.WriteLine("Endast siffror är tillåtna");
+                    }
                 }
                 else if (readkey == 2)
                 {
@@ -99,6 +117,21 @@ namespace AgiltBank
             Console.WriteLine("[8] Uttag");
             Console.WriteLine("[9] Överföring");
             Console.WriteLine("[0] Avsluta");
+        }
+
+        private static void ShowCustomerDetails(Customer customer)
+        {
+            if (customer == null)
+            {
+                Console.WriteLine("Kunden kunde inte hittas");
+            }
+            else
+            {
+                Console.WriteLine($"Kundnummer: {customer.Id}");
+                Console.WriteLine($"Organisationsnummer: {customer.OrganisationNumber}");
+                Console.WriteLine($"Namn: {customer.Name}");
+                Console.WriteLine($"Adress: {customer.StreetAddress}, {customer.PostalCode} {customer.City}");
+            }
         }
     }
 }
