@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using AgiltBank.Library.Data;
+using AgiltBank.Library.Models;
 
 namespace AgiltBank
 {
@@ -6,7 +9,9 @@ namespace AgiltBank
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var bankFileService = new BankFileService();
+            var path = Path.Combine(Environment.CurrentDirectory, "SeedData/bankdata-small.txt");
+            var bank = bankFileService.ReadBankDataFromFile(path, "SuperBank");
         }
     }
 }

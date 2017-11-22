@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AgiltBank.Library\AgiltBank.Library.csproj" />
+  </ItemGroup>
+
 </Project>
