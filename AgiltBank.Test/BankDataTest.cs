@@ -1,6 +1,7 @@
 ﻿using AgiltBank.Library.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AgiltBank.Test
 {
@@ -77,6 +78,13 @@ namespace AgiltBank.Test
         [TestMethod]
         public void RemoveCustomer_WithMoneyOnAccount_ShouldReturnFalse() => Assert.IsFalse(_bank.RemoveCustomer(1005));
 
+        [TestMethod]
+        public void CanSearchCustomersByNameOrPostalCode()
+        {
+            const string query = "berglunds";
+            Assert.IsTrue(_bank.SearchCustomers(query)
+                .All(c => c.Name.ToLower().Contains(query) || c.PostalCode.Contains(query)));
+        }
         #endregion
     }
 }
