@@ -128,6 +128,29 @@ namespace AgiltBank
                 else if (readkey == 6)
                 {
                     Console.WriteLine("Tabort konto");
+                    while (true)
+                    {
+                        Console.WriteLine("kontonummer:");
+                        var parsedReadLine = GetParsedReadLine();
+
+                        if (parsedReadLine != null)
+                        {
+                            if (bank.RemoveAccount((int)parsedReadLine))
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("kontot har tagits bort");
+                            }
+                            else
+                            {
+                                Console.WriteLine("kontot kunde inte hittas");
+                            }
+
+                            PromptToGoBackToMenu();
+                            break;
+                        }
+
+                        Console.WriteLine("Endast siffror är tillåtna");
+                    }
                 }
                 else if (readkey == 7)
                 {
