@@ -23,6 +23,11 @@ namespace AgiltBank.Test
         [TestMethod]
         public void CanWithdrawMoneyFromAccount() => Assert.IsTrue(_account.Withdrawal(100));
 
+
+        [TestMethod]
+        public void WithdrawNegativeMoney_ShouldReturnFalse() => Assert.IsFalse(_account.Withdrawal(-100));
+
+
         #endregion
     }
 }
