@@ -101,6 +101,29 @@ namespace AgiltBank
                 else if (readkey == 5)
                 {
                     Console.WriteLine("Öppna konto");
+                    while (true)
+                    {
+                        Console.WriteLine("Kund id:");
+                        var parsedReadLine = GetParsedReadLine();
+
+                        if (parsedReadLine != null)
+                        {
+                            if (bank.OpenAccount((int)parsedReadLine))
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("Ett konto har skapats");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Kunden kunde inte hittas");
+                            }
+
+                            PromptToGoBackToMenu();
+                            break;
+                        }
+
+                        Console.WriteLine("Endast siffror är tillåtna");
+                    }
                 }
                 else if (readkey == 6)
                 {
