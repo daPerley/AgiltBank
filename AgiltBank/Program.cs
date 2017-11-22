@@ -1,14 +1,14 @@
-﻿using System;
+﻿using AgiltBank.Library.Data;
+using AgiltBank.Library.Models;
+using System;
 using System.IO;
 using System.Linq;
-using AgiltBank.Library.Data;
-using AgiltBank.Library.Models;
 
 namespace AgiltBank
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var bankFileService = new BankFileService();
             var path = Path.Combine(Environment.CurrentDirectory, "SeedData/bankdata-small.txt");
