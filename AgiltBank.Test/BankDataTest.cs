@@ -1,4 +1,5 @@
-﻿using AgiltBank.Library.Models;
+﻿using AgiltBank.Library.Data;
+using AgiltBank.Library.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,14 @@ namespace AgiltBank.Test
     public class BankDataTest
     {
         private Bank _bank;
+        private BankFileService _bankFileService;
+        private string path;
 
         [TestInitialize]
         public void Initialize()
         {
+            _bankFileService = new BankFileService();
+
             var customers = new List<Customer>
             {
                 new Customer
@@ -48,6 +53,13 @@ namespace AgiltBank.Test
 
             _bank = new Bank(customers, accounts, "TestBank");
         }
+
+        #region Files
+        [TestMethod]
+        public void CanSaveBankToFile() => Assert.IsTrue(_bankFileService.SaveData(_bank));
+
+ 
+        #endregion
 
         #region Customer
         [TestMethod]
