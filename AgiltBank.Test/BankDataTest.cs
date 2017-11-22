@@ -90,6 +90,9 @@ namespace AgiltBank.Test
         #region Account
         [TestMethod]
         public void CanOpenAccount() => Assert.IsTrue(_bank.OpenAccount(1005));
+
+        [TestMethod]
+        public void CanRemoveAccount() => Assert.IsTrue(_bank.RemoveAccount(13001));
         #endregion
     }
 }
