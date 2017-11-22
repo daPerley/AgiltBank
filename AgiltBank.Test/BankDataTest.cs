@@ -48,6 +48,9 @@ namespace AgiltBank.Test
             _bank = new Bank(customers, accounts, "TestBank");
         }
 
-
+        #region Customer
+        [TestMethod]
+        public void CanGetCustomerFromBankData() => Assert.IsNotNull(_bank.GetCustomer(1005));
+        #endregion
     }
 }
