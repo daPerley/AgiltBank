@@ -1,6 +1,7 @@
 ﻿using AgiltBank.Library.Data;
 using AgiltBank.Library.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -43,7 +44,7 @@ namespace AgiltBank
                         {
                             var customer = bank.GetCustomer((int) parsedReadLine);
                             if (customer != null)
-                                ShowCustomerDetails(customer);
+                                ShowCustomerDetails(customer, bank.Accounts.Where(a => a.CustomerId == customer.Id));
                             else
                                 Console.WriteLine("Kunden kunde inte hittas");
 
@@ -292,7 +293,7 @@ namespace AgiltBank
             Console.WriteLine("[0] Avsluta");
         }
 
-        private static void ShowCustomerDetails(Customer customer)
+        private static void ShowCustomerDetails(Customer customer, IEnumerable<Account> accounts)
         {
             if (customer == null)
             {
@@ -304,6 +305,12 @@ namespace AgiltBank
                 Console.WriteLine($"Organisationsnummer: {customer.OrganisationNumber}");
                 Console.WriteLine($"Namn: {customer.Name}");
                 Console.WriteLine($"Adress: {customer.StreetAddress}, {customer.PostalCode} {customer.City}");
+                Console.WriteLine();
+                Console.WriteLine("Accounts:");
+                foreach (var account in accounts)
+                {
+                    Console.WriteLine($"{account.Id} | {account.Balance} SEK");
+                }
             }
         }
 
