@@ -215,6 +215,37 @@ namespace AgiltBank
                 else if (readkey == 9)
                 {
                     Console.WriteLine("överför pengar");
+                    while (true)
+                    {
+                        Console.WriteLine("Avsändare");
+                        Console.WriteLine("Konto nr:");
+                        var senderAccountNumber = GetParsedReadLine();
+
+                        Console.WriteLine("Mottagare");
+                        Console.WriteLine("Konto nr:");
+                        var recepientAccountNumber = GetParsedReadLine();
+
+                        Console.WriteLine("Summa");
+                        var amount = GetParsedReadLine();
+
+                        if (senderAccountNumber != null && amount != null && recepientAccountNumber != null)
+                        {
+                            if (bank.TransferBetweenAccounts((int)senderAccountNumber, (int)recepientAccountNumber, (decimal)amount))
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine($"{amount}SEK har tagits flyttats från konto: {senderAccountNumber}, till konto: {recepientAccountNumber}");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Misslyckades att ta ut pengar");
+                            }
+
+                            PromptToGoBackToMenu();
+                            break;
+                        }
+
+                        Console.WriteLine("Endast siffror är tillåtna");
+                    }
                 }
             }
 
