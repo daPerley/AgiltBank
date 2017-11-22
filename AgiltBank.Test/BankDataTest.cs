@@ -97,5 +97,11 @@ namespace AgiltBank.Test
         [TestMethod]
         public void RemoveAccount_WithMoneyOn_ShouldReturnFalse() => Assert.IsFalse(_bank.RemoveAccount(14002));
         #endregion
+
+        #region Transfer
+        [TestMethod]
+        public void CanTransferMoneyBetweenAccounts() => Assert.IsTrue(_bank.TransferBetweenAccounts(14002, 14001, 50));
+
+        #endregion
     }
 }
