@@ -74,6 +74,29 @@ namespace AgiltBank
                 else if (readkey == 4)
                 {
                     Console.WriteLine("Ta bort kund");
+                    while (true)
+                    {
+                        Console.WriteLine("Kund id:");
+                        var parsedReadLine = GetParsedReadLine();
+
+                        if (parsedReadLine != null)
+                        {
+                            if (bank.RemoveCustomer((int)parsedReadLine))
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("Kunden har tagits bort");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Kunden kunde inte hittas");
+                            }
+
+                            PromptToGoBackToMenu();
+                            break;
+                        }
+
+                        Console.WriteLine("Endast siffror är tillåtna");
+                    }
                 }
                 else if (readkey == 5)
                 {
