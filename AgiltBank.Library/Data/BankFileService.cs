@@ -62,7 +62,7 @@ namespace AgiltBank.Library.Data
 
                 File.WriteAllLines(path, lines);
             }
-            catch (System.Exception e)
+            catch
             {
                 return false;
             }
