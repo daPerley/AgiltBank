@@ -55,9 +55,12 @@ namespace AgiltBank.Library.Data
                 var path = Path.Combine(folder, $"{bank.Name}.txt");
 
                 if (!File.Exists(path))
-                    File.Create(path);
-                else
-                    File.WriteAllLines(path, lines);
+                {
+                    var file = File.Create(path);
+                    file.Close();
+                }
+
+                File.WriteAllLines(path, lines);
             }
             catch (System.Exception e)
             {
