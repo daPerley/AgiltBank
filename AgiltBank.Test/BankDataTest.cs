@@ -86,5 +86,10 @@ namespace AgiltBank.Test
                 .All(c => c.Name.ToLower().Contains(query) || c.PostalCode.Contains(query)));
         }
         #endregion
+
+        #region Account
+        [TestMethod]
+        public void CanOpenAccount() => Assert.IsTrue(_bank.OpenAccount(1005));
+        #endregion
     }
 }
