@@ -65,7 +65,11 @@ namespace AgiltBank
                 }
                 else if (readkey == 3)
                 {
-                    Console.WriteLine("Skapa Kund");
+                    var customer = PromtToCreateCustomer();
+                    bank.AddCustomer(customer);
+                    Console.WriteLine();
+                    Console.WriteLine("Kunden har skapats");
+                    PromptToGoBackToMenu();
                 }
                 else if (readkey == 4)
                 {
@@ -140,6 +144,135 @@ namespace AgiltBank
                 Console.WriteLine($"Namn: {customer.Name}");
                 Console.WriteLine($"Adress: {customer.StreetAddress}, {customer.PostalCode} {customer.City}");
             }
+        }
+
+        private static Customer PromtToCreateCustomer()
+        {
+            var customer = new Customer();
+            Console.WriteLine("Skapa Kund:");
+
+            while (true)
+            {
+                Console.WriteLine("Namn:");
+                var name = Console.ReadLine();
+
+                if (name.Length >= 3 && name.Length <= 20)
+                {
+                    Console.WriteLine("Namnet måste vara mellan 3 & 20 tecken långt");
+                    continue;
+                }
+
+                customer.OrganisationNumber = name;
+                break;
+            }
+
+            while (true)
+            {
+                Console.WriteLine("Organisationsnummer:");
+                var organisationNumber = Console.ReadLine();
+
+                if (organisationNumber.Length >= 3 && organisationNumber.Length <= 20)
+                {
+                    Console.WriteLine("Organisationsnummret måste vara mellan 3 & 20 tecken långt");
+                    continue;
+                }
+
+                customer.OrganisationNumber = organisationNumber;
+                break;
+            }
+
+            while (true)
+            {
+                Console.WriteLine("Telefonnummer:");
+                var phone = Console.ReadLine();
+
+                if (phone.Length >= 10 && phone.Length <= 15)
+                {
+                    Console.WriteLine("Telefonnummret måste vara mellan 10 & 15 tecken långt");
+                    continue;
+                }
+
+                customer.PhoneNumber = phone;
+                break;
+            }
+
+
+            while (true)
+            {
+                Console.WriteLine("Gatuadress:");
+                var streetAddress = Console.ReadLine();
+
+                if (streetAddress.Length >= 3 && streetAddress.Length <= 20)
+                {
+                    Console.WriteLine("Gatuadressen måste vara mellan 3 & 20 tecken långt");
+                    continue;
+                }
+
+                customer.StreetAddress = streetAddress;
+                break;
+            }
+
+            while (true)
+            {
+                Console.WriteLine("Postkod:");
+                var postalCode = Console.ReadLine();
+
+                if (postalCode.Length >= 3 && postalCode.Length <= 10)
+                {
+                    Console.WriteLine("Postkoden måste vara mellan 3 & 10 tecken långt");
+                    continue;
+                }
+
+                customer.PostalCode = postalCode;
+                break;
+            }
+
+            while (true)
+            {
+                Console.WriteLine("Stat:");
+                var state = Console.ReadLine();
+
+                if (state.Length <= 20)
+                {
+                    Console.WriteLine("Staten får inte vara längre än 20 tecken");
+                    continue;
+                }
+
+                customer.State = state;
+                break;
+            }
+
+            while (true)
+            {
+                Console.WriteLine("Stad:");
+                var city = Console.ReadLine();
+
+                if (city.Length >= 3 && city.Length <= 20)
+                {
+                    Console.WriteLine("Staden måste vara mellan 3 & 20 tecken långt");
+                    continue;
+                }
+
+                customer.City = city;
+                break;
+            }
+
+            while (true)
+            {
+                Console.WriteLine("Land:");
+                var country = Console.ReadLine();
+
+                if (country.Length >= 3 && country.Length <= 20)
+                {
+                    Console.WriteLine("Landet måste vara mellan 3 & 20 tecken långt");
+                    continue;
+                }
+
+                customer.Country = country;
+                break;
+            }
+
+            return customer;
         }
     }
 }
