@@ -70,6 +70,9 @@ namespace AgiltBank.Test
             Assert.AreEqual(true, _bank.AddCustomer(customer));
             Assert.IsNotNull(_bank.GetCustomer(1002));
         }
+
+        [TestMethod]
+        public void CanRemoveCustomer() => Assert.IsTrue(_bank.RemoveCustomer(1001));
         #endregion
     }
 }
