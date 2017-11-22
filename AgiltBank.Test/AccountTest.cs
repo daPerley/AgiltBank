@@ -30,5 +30,10 @@ namespace AgiltBank.Test
         [TestMethod]
         public void WithdrawMoreMoneyThanAccountBalance_ShouldReturnFalse() => Assert.IsFalse(_account.Withdrawal(10000));
         #endregion
+
+        #region Deposit
+        [TestMethod]
+        public void CanDepositMoneyToAccount() => Assert.IsTrue(_account.Deposit(100));
+        #endregion
     }
 }
