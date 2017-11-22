@@ -185,6 +185,32 @@ namespace AgiltBank
                 else if (readkey == 8)
                 {
                     Console.WriteLine("Ta ut pengar");
+                    while (true)
+                    {
+                        Console.WriteLine("Konto nr:");
+                        var accountNumber = GetParsedReadLine();
+
+                        Console.WriteLine("Summa");
+                        var amount = GetParsedReadLine();
+
+                        if (accountNumber != null && amount != null)
+                        {
+                            if (bank.WithdrawalFromAccount((int)accountNumber, (decimal)amount))
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine($"{amount}SEK har tagits ut frånt konto: {accountNumber}");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Misslyckades att ta ut pengar");
+                            }
+
+                            PromptToGoBackToMenu();
+                            break;
+                        }
+
+                        Console.WriteLine("Endast siffror är tillåtna");
+                    }
                 }
                 else if (readkey == 9)
                 {
