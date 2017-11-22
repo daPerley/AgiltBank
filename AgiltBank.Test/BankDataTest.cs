@@ -93,6 +93,9 @@ namespace AgiltBank.Test
 
         [TestMethod]
         public void CanRemoveAccount() => Assert.IsTrue(_bank.RemoveAccount(13001));
+
+        [TestMethod]
+        public void RemoveAccount_WithMoneyOn_ShouldReturnFalse() => Assert.IsFalse(_bank.RemoveAccount(14002));
         #endregion
     }
 }
